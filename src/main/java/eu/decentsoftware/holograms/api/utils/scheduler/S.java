@@ -3,9 +3,9 @@ package eu.decentsoftware.holograms.api.utils.scheduler;
 import eu.decentsoftware.holograms.api.DecentHolograms;
 import eu.decentsoftware.holograms.api.DecentHologramsAPI;
 import eu.decentsoftware.holograms.api.utils.DExecutor;
+import me.eeshe.emperixlib.models.Scheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.IllegalPluginAccessException;
-import org.bukkit.scheduler.BukkitTask;
 
 public class S {
 
@@ -16,20 +16,20 @@ public class S {
     }
 
     public static void sync(Runnable runnable) {
-        Bukkit.getScheduler().runTask(DECENT_HOLOGRAMS.getPlugin(), runnable);
+        Scheduler.run(DECENT_HOLOGRAMS.getPlugin(), runnable);
     }
 
-    public static BukkitTask sync(Runnable runnable, long delay) {
-        return Bukkit.getScheduler().runTaskLater(DECENT_HOLOGRAMS.getPlugin(), runnable, delay);
+    public static Scheduler.Task sync(Runnable runnable, long delay) {
+        return Scheduler.runLater(DECENT_HOLOGRAMS.getPlugin(), runnable, delay);
     }
 
-    public static BukkitTask syncTask(Runnable runnable, long interval) {
-        return Bukkit.getScheduler().runTaskTimer(DECENT_HOLOGRAMS.getPlugin(), runnable, 0, interval);
+    public static Scheduler.Task syncTask(Runnable runnable, long interval) {
+        return Scheduler.runTimer(DECENT_HOLOGRAMS.getPlugin(), runnable, 0, interval);
     }
 
     public static void async(Runnable runnable) {
         try {
-            Bukkit.getScheduler().runTaskAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable);
+            Scheduler.runAsync(DECENT_HOLOGRAMS.getPlugin(), runnable);
         } catch (IllegalPluginAccessException e) {
             DExecutor.execute(runnable);
         }
@@ -37,18 +37,18 @@ public class S {
 
     public static void async(Runnable runnable, long delay) {
         try {
-            Bukkit.getScheduler().runTaskLaterAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable, delay);
+            Scheduler.runLaterAsync(DECENT_HOLOGRAMS.getPlugin(), runnable, delay);
         } catch (IllegalPluginAccessException e) {
             DExecutor.execute(runnable);
         }
     }
 
-    public static BukkitTask asyncTask(Runnable runnable, long interval) {
-        return Bukkit.getScheduler().runTaskTimerAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable, 0, interval);
+    public static Scheduler.Task asyncTask(Runnable runnable, long interval) {
+        return Scheduler.runTimerAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable, 0, interval);
     }
 
-    public static BukkitTask asyncTask(Runnable runnable, long interval, long delay) {
-        return Bukkit.getScheduler().runTaskTimerAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable, delay, interval);
+    public static Scheduler.Task asyncTask(Runnable runnable, long interval, long delay) {
+        return Scheduler.runTimerAsynchronously(DECENT_HOLOGRAMS.getPlugin(), runnable, delay, interval);
     }
 
 }
