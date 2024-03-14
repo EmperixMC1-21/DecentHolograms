@@ -11,6 +11,7 @@ import eu.decentsoftware.holograms.api.utils.PAPI;
 import eu.decentsoftware.holograms.api.utils.location.LocationUtils;
 import lombok.Getter;
 import lombok.NonNull;
+import me.eeshe.emperixlib.models.Scheduler;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -66,7 +67,7 @@ public abstract class ActionType {
             Validate.notNull(player);
 
             String string = String.join(" ", args);
-            Bukkit.getScheduler().runTask(DECENT_HOLOGRAMS.getPlugin(), () -> {
+            Scheduler.run(DECENT_HOLOGRAMS.getPlugin(), () -> {
                 //
                 player.chat(PAPI.setPlaceholders(player, string.replace("{player}", player.getName())));
             });
@@ -80,7 +81,7 @@ public abstract class ActionType {
             Validate.notNull(player);
 
             String string = String.join(" ", args);
-            Bukkit.getScheduler().runTask(DECENT_HOLOGRAMS.getPlugin(), () -> {
+            Scheduler.run(DECENT_HOLOGRAMS.getPlugin(), () -> {
                 //
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PAPI.setPlaceholders(player, string.replace("{player}", player.getName())));
             });
@@ -113,7 +114,7 @@ public abstract class ActionType {
             if (location == null) {
                 return false;
             }
-            Bukkit.getScheduler().runTask(DECENT_HOLOGRAMS.getPlugin(), () -> player.teleport(location));
+            Scheduler.run(DECENT_HOLOGRAMS.getPlugin(), () -> player.teleport(location));
             return true;
         }
     };
