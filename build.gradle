@@ -34,8 +34,8 @@ dependencies {
     annotationProcessor 'org.jetbrains:annotations:24.1.0'
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 16
+targetCompatibility = 16
 
 compileJava {
     options.encoding = 'UTF-8'
